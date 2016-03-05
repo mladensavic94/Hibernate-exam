@@ -6,9 +6,17 @@ import javax.persistence.*;
 @Table(name = "subject")
 public class Subject {
 	@Id 
-	@GeneratedValue
 	@Column(name = "ID")
 	private int ID;
+	public Subject(){
+		super();
+		
+	}
+	public Subject( String name, String leadProffesor, int year) {
+		this.name = name;
+		this.leadProffesor = leadProffesor;
+		this.year = year;
+	}
 	@Column(name = "name")
 	private String name;
 	@Column(name = "lead_proffesor")
@@ -39,6 +47,10 @@ public class Subject {
 	}
 	public void setYear(int year) {
 		this.year = year;
+	}
+	@Override
+	public String toString() {
+		return "Subject: " + name + "\tProffesor: " + leadProffesor + "\tYear of enrollment: " + year;
 	}
 	
 	

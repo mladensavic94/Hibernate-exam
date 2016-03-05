@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "exam")
 public class Exam {
 
-	@Id 
-	@GeneratedValue
+	@Id
 	@Column(name = "examID")
 	private int examID;
 	@Column(name = "date")

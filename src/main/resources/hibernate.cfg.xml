@@ -4,21 +4,14 @@
 
 <hibernate-configuration>
    <session-factory>
-   <property name="hibernate.dialect">
-      org.hibernate.dialect.MySQLDialect
-   </property>
-   <property name="hibernate.connection.driver_class">
-      com.mysql.jdbc.Driver
-   </property>
-   <property name="hibernate.connection.url">
-      jdbc:mysql://localhost/examrecord
-   </property>
-   <property name="hibernate.connection.username">
-      admin
-   </property>
-   <property name="hibernate.connection.password">
-      admin
-   </property>
+   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+   <property name="hibernate.connection.url">jdbc:mysql://localhost/examrecord</property>
+   <property name="hibernate.connection.username">admin</property>
+   <property name="hibernate.connection.password">admin</property>
+   <mapping class="domain.Student"/>
+   <mapping class="domain.Exam"/>
+   <mapping class="domain.Subject"/>
 
 </session-factory>
 </hibernate-configuration>

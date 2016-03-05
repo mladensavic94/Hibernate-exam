@@ -1,14 +1,22 @@
 package domain;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Student")
-public class Student {
-	@Id 
-	@GeneratedValue
-	@Column(name = "index")
+@Table(name = "student")
+public class Student implements Serializable {
+	@Id
+	@Column(name = "indeks")
 	private int index;
+	public Student(int index, String name, String surname, String birthPlace, char gender) {
+		this.index = index;
+		this.name = name;
+		this.surname = surname;
+		this.birthPlace = birthPlace;
+		this.gender = gender;
+	}
 	@Column(name = "name")
 	private String name;
 	@Column(name = "surname")
