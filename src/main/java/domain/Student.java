@@ -10,6 +10,9 @@ public class Student implements Serializable {
 	@Id
 	@Column(name = "indeks")
 	private int index;
+	public Student(){
+		super();
+	}
 	public Student(int index, String name, String surname, String birthPlace, char gender) {
 		this.index = index;
 		this.name = name;
@@ -54,6 +57,11 @@ public class Student implements Serializable {
 	}
 	public void setGender(char gender) {
 		this.gender = gender;
+	}
+	@Override
+	public String toString() {
+		return "Student [index=" + index + ", name=" + name + ", surname=" + surname + ", birthPlace=" + birthPlace
+				+ ", gender=" + gender + "]";
 	}
 	
 	
