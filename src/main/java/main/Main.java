@@ -15,11 +15,11 @@ import domain.Subject;
 public class Main {
 	static Configuration config;
 	static Session session;
+	
 	public static void main(String[] args) {
-		
 		try {
 			config = new Configuration().configure("hibernate.cfg.xml");
-			//addToBase(new Subject("Math","testProffesorName21",2015));
+			addToBase(new Subject("Math", "testProffesorName21", 2015));
 			//updateStudent("Mladen", "Test");
 			//deleteByYear(2111);
 			//System.out.println(findStudentByIndex(20130043));
@@ -35,15 +35,14 @@ public class Main {
 
 	}
 	
-	public static void addToBase(Object o){
-		if(o instanceof Student || o instanceof Exam || o instanceof Subject){
+	public static void addToBase(Object o) {
+		if (o instanceof Student || o instanceof Exam || o instanceof Subject) {
 			openSession();
 			session.persist(o);
 			session.getTransaction().commit();
 			closeSession();
 			System.out.println("Added to DB!");
 		}
-		
 	}
 	public static void listAllSubject(){
 		openSession();
@@ -65,10 +64,17 @@ public class Main {
 		return s;
 	}
 	public static List<Subject> findSubjectByName(String name){
-		Session session = config.buildSessionFactory().openSession();
-		session.beginTransaction();
+		openSession();
+		
+		String query = 
+				"FROM Subject " +
+				"WHERE name = :name";
+		
 		@SuppressWarnings("unchecked")
-		List<Subject> list = session.createQuery("FROM Subject WHERE name = '" + name +"'").list();
+		List<Subject> list = session.createQuery(query)
+				.setEntity("name", name)
+				.list();
+		
 		closeSession();
 		return list;
 		
