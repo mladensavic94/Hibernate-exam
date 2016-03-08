@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,10 +13,9 @@ public class Student implements Serializable {
 
 	private static final long serialVersionUID = 6952079255059847992L;
 
-	@Id @GeneratedValue(strategy = GenerationType.TABLE)
+	@Id
 	@Column(name = "indeks")
 	private int index;
-
 	private String name;
 	private String surname;
 	private String birthPlace;

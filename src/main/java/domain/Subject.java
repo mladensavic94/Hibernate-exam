@@ -10,9 +10,9 @@ public class Subject implements Serializable {
 
 	private static final long serialVersionUID = -8506052895380466541L;
 
-	@Id @GeneratedValue(strategy = GenerationType.TABLE)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
-
 	private String name;
 	private String leadProffesor;
 	private int year;

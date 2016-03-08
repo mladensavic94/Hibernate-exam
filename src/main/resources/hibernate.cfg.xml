@@ -4,13 +4,6 @@
 
 <hibernate-configuration>
    <session-factory>
-   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-   <property name="hibernate.connection.url">jdbc:mysql://localhost/examrecord</property>
-   <property name="hibernate.hbm2ddl.auto">update</property>
-   <property name="hibernate.connection.username">examrecord</property>
-   <property name="hibernate.connection.password">examrecord</property>
-   
    <mapping class="domain.Student"/>
    <mapping class="domain.Exam"/>
    <mapping class="domain.Subject"/>

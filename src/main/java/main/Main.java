@@ -1,40 +1,33 @@
 package main;
 
-
-
 import java.util.List;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
 
-
+import dao.StudentDao;
 import domain.Exam;
+import domain.Gender;
 import domain.Student;
 import domain.Subject;
 
 public class Main {
 	static Configuration config;
 	static Session session;
-	
+
 	public static void main(String[] args) {
-		try {
-			config = new Configuration().configure("hibernate.cfg.xml");
-			addToBase(new Subject("Math", "testProffesorName21", 2015));
-			//updateStudent("Mladen", "Test");
-			//deleteByYear(2111);
-			//System.out.println(findStudentByIndex(20130043));
-			//listAllSubject();
-			List<Subject> l = findSubjectByName("Math");
-			for (int i = 0; i < l.size(); i++) {
-				System.out.println(l.get(i).toString());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		StudentDao s = new StudentDao();
+		Student st = new Student(20130004, "TestName", "TestSurname", "TestBirthplace", Gender.MALE);
+		s.insertNewStudent(st);
+		/*
+		 * List<Student> lista = s.listAllStudents(); for (int i = 0; i <
+		 * lista.size(); i++) { System.out.println(lista.get(i).toString()); ; }
+		 */
+		System.out.println(s.findbyIndex(20130001).toString());
 
 	}
-	
+
 	public static void addToBase(Object o) {
 		if (o instanceof Student || o instanceof Exam || o instanceof Subject) {
 			openSession();
@@ -44,7 +37,8 @@ public class Main {
 			System.out.println("Added to DB!");
 		}
 	}
-	public static void listAllSubject(){
+
+	public static void listAllSubject() {
 		openSession();
 		@SuppressWarnings("unchecked")
 		List<Subject> result = session.createQuery("FROM Subject").list();
@@ -55,52 +49,54 @@ public class Main {
 			System.out.println(s.toString());
 		}
 		closeSession();
-		
+
 	}
-	public static Student findStudentByIndex(int index){
+
+	public static Student findStudentByIndex(int index) {
 		openSession();
 		Student s = (Student) session.createQuery("FROM Student WHERE indeks =" + index).list().get(0);
 		closeSession();
 		return s;
 	}
-	public static List<Subject> findSubjectByName(String name){
+
+	public static List<Subject> findSubjectByName(String name) {
 		openSession();
-		
-		String query = 
-				"FROM Subject " +
-				"WHERE name = :name";
-		
+
+		String query = "FROM Subject " + "WHERE name = :name";
+
 		@SuppressWarnings("unchecked")
-		List<Subject> list = session.createQuery(query)
-				.setEntity("name", name)
-				.list();
-		
+		List<Subject> list = session.createQuery(query).setEntity("name", name).list();
+
 		closeSession();
 		return list;
-		
+
 	}
-	public static void deleteByYear(int year){
+
+	public static void deleteByYear(int year) {
 		openSession();
 		String s = "delete Subject where year ='" + year + "'";
 		Query que = session.createQuery(s);
-		//que.setInteger("yearPar", year);
-		int res =que.executeUpdate();
+		// que.setInteger("yearPar", year);
+		int res = que.executeUpdate();
 		System.out.println(res);
 		closeSession();
 	}
-	public static void updateStudent(String name, String surname){
+
+	public static void updateStudent(String name, String surname) {
 		openSession();
-		Query que = session.createQuery("update Student set surname = '"+surname+"'  where name = '"+name+"'");
-		//que.setString("namePar", name);
-		//que.setString("surnamePar", surname);
+		Query que = session.createQuery("update Student set surname = '" + surname + "'  where name = '" + name + "'");
+		// que.setString("namePar", name);
+		// que.setString("surnamePar", surname);
 		que.executeUpdate();
 		closeSession();
 	}
-	public static void openSession(){
+
+	public static void openSession() {
 		session = config.buildSessionFactory().openSession();
 		session.beginTransaction();
 	}
-	public static void closeSession(){
+
+	public static void closeSession() {
 		session.close();
 		session.getSessionFactory().close();
 	}
