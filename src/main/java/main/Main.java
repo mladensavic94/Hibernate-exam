@@ -6,7 +6,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
+import dao.ExamDao;
 import dao.StudentDao;
+import dao.SubjectDao;
 import domain.Exam;
 import domain.Gender;
 import domain.Student;
@@ -19,12 +21,30 @@ public class Main {
 	public static void main(String[] args) {
 		StudentDao s = new StudentDao();
 		Student st = new Student(20130004, "TestName", "TestSurname", "TestBirthplace", Gender.MALE);
-		s.insertNewStudent(st);
+		// s.insertNewStudent(st);
 		/*
 		 * List<Student> lista = s.listAllStudents(); for (int i = 0; i <
 		 * lista.size(); i++) { System.out.println(lista.get(i).toString()); ; }
 		 */
-		System.out.println(s.findbyIndex(20130001).toString());
+		// System.out.println(s.findbyIndex(20130001).toString());
+		Subject sub = new Subject("TestSubjectName2", "TestProffesor", 1234);
+		SubjectDao sd = new SubjectDao();
+		// sd.insertNewSubject(sub);
+
+		/*
+		 * List<Subject> list = sd.getAllSubjects(); for (Subject subject :
+		 * list) { System.out.println(subject); }
+		 */
+
+		// System.out.println(sd.getSubjectByName("TestSubjectName"));
+		Exam exam = new Exam("9.3.2016", 5, sub, st);
+		ExamDao ed = new ExamDao();
+		// ed.insertNewExam(exam);
+
+		List<Exam> l = ed.getAllPassed();
+		for (Exam e : l) {
+			System.out.println(e);
+		}
 
 	}
 
