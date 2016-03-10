@@ -1,4 +1,4 @@
-package domain;
+package rs.ac.bg.fon.ai.domain;
 
 import java.io.Serializable;
 

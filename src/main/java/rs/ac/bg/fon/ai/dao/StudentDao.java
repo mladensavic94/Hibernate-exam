@@ -1,12 +1,12 @@
-package dao;
+package rs.ac.bg.fon.ai.dao;
 
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import domain.Student;
-import main.HibernateUtil;
+import rs.ac.bg.fon.ai.domain.Student;
+import rs.ac.bg.fon.ai.persistance.HibernateUtil;
 
 public class StudentDao {
 

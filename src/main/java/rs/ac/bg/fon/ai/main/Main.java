@@ -1,4 +1,4 @@
-package main;
+package rs.ac.bg.fon.ai.main;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-import dao.ExamDao;
-import dao.StudentDao;
-import dao.SubjectDao;
-import domain.Exam;
-import domain.Gender;
-import domain.Student;
-import domain.Subject;
+import rs.ac.bg.fon.ai.dao.ExamDao;
+import rs.ac.bg.fon.ai.dao.StudentDao;
+import rs.ac.bg.fon.ai.dao.SubjectDao;
+import rs.ac.bg.fon.ai.domain.Exam;
+import rs.ac.bg.fon.ai.domain.Gender;
+import rs.ac.bg.fon.ai.domain.Student;
+import rs.ac.bg.fon.ai.domain.Subject;
 
 public class Main {
 	static Configuration config;
@@ -21,7 +21,7 @@ public class Main {
 	public static void main(String[] args) {
 		StudentDao s = new StudentDao();
 		Student st = new Student(20130004, "TestName", "TestSurname", "TestBirthplace", Gender.MALE);
-		// s.insertNewStudent(st);
+//		s.insertNewStudent(st);
 		/*
 		 * List<Student> lista = s.listAllStudents(); for (int i = 0; i <
 		 * lista.size(); i++) { System.out.println(lista.get(i).toString()); ; }
@@ -29,7 +29,7 @@ public class Main {
 		// System.out.println(s.findbyIndex(20130001).toString());
 		Subject sub = new Subject("TestSubjectName2", "TestProffesor", 1234);
 		SubjectDao sd = new SubjectDao();
-		// sd.insertNewSubject(sub);
+		 sd.insertNewSubject(sub);
 
 		/*
 		 * List<Subject> list = sd.getAllSubjects(); for (Subject subject :

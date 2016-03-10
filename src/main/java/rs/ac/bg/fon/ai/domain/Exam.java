@@ -1,4 +1,4 @@
-package domain;
+package rs.ac.bg.fon.ai.domain;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,12 +15,15 @@ public class Exam implements Serializable {
 
 	private static final long serialVersionUID = -2635547975890332072L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Id	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	private String date;
 	private int score;
+	
+	@OneToOne
 	private Subject subject;
+
+	@OneToOne
 	private Student student;
 
 	public Exam() {

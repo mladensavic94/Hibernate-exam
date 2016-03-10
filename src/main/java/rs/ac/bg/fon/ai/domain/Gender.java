@@ -1,4 +1,4 @@
-package domain;
+package rs.ac.bg.fon.ai.domain;
 
 public enum Gender {
 

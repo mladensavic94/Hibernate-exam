@@ -1,4 +1,4 @@
-package main;
+package rs.ac.bg.fon.ai.persistance;
 
 import java.util.Properties;
 
@@ -37,13 +37,14 @@ public class HibernateUtil {
 		instance = null;
 	}
 
+	// TODO: extract to a separate class HibernateConfig
 	public Properties getProperties() {
 		Properties p = new Properties();
 		p.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		p.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
 		p.put("hibernate.connection.url", "jdbc:mysql://localhost/examrecord");
-		p.put("hibernate.connection.user", "admin");
-		p.put("hibernate.connection.password", "admin");
+		p.put("hibernate.connection.user", "examrecord");
+		p.put("hibernate.connection.password", "examrecord");
 		p.put("hibernate.hbm2ddl.auto", "update");
 		return p;
 
