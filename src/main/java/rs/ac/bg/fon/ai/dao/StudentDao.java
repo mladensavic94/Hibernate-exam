@@ -19,7 +19,7 @@ public class StudentDao {
 		boolean exist = false;
 		for (int i = 0; i < result.size(); i++) {
 			if (result.get(i).getIndex() == student.getIndex()) {
-				System.out.println("Student with index: " + student.getIndex() + " already exists");
+				System.out.println("Student with index: " + student.getIndex() + "already exists");
 				exist = true;
 			}
 
@@ -36,6 +36,7 @@ public class StudentDao {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List listAllStudents() {
+
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 		List<Student> result = session.createQuery("FROM Student").list();

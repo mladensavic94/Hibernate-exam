@@ -40,6 +40,7 @@ public class ExamDao {
 		String hql = "FROM Exam AS e WHERE e.score > 5";
 		Query q = session.createQuery(hql);
 		List<Exam> list = q.list();
+		HibernateUtil.getInstance().closeFactory();
 		return list;
 	}
 
