@@ -3,17 +3,14 @@ package rs.ac.bg.fon.ai.main;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-import rs.ac.bg.fon.ai.dao.StudentDao;
-import rs.ac.bg.fon.ai.domain.Gender;
-import rs.ac.bg.fon.ai.domain.Student;
-
 public class Main {
 	static Configuration config;
 	static Session session;
 
 	public static void main(String[] args) {
-		StudentDao s = new StudentDao();
-		Student st = new Student(20130123, "TestName", "TestSurname", "TestBirthplace", Gender.MALE);
+		// StudentDao s = new StudentDao();
+		// Student st = new Student(20130123, "TestName", "TestSurname",
+		// "TestBirthplace", Gender.MALE);
 		// s.insertNewStudent(st);
 		//
 		// List<Student> lista = s.listAllStudents();
@@ -32,7 +29,7 @@ public class Main {
 		//
 		//
 		// System.out.println(sd.getSubjectByName("TestSubjectName"));
-		// Exam exam = new Exam("9.3.2016", 5, sub, st);
+		// Exam exam = new Exam("9.3.2016", 7, sub, st);
 		// ExamDao ed = new ExamDao();
 		// ed.insertNewExam(exam);
 		//
