@@ -1,0 +1,73 @@
+<DOCTYPE! html>
+    <html>
+
+    <head>
+        <title>New exam input</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <script src="jquery/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript">
+       function saveExamData(){
+         var student = document.getElementById("student").value;
+        var subject = document.getElementById("subject").value;
+        var date = document.getElementById("date").value;
+        var score = document.getElementById("score").value;
+
+        var json = {
+            "student" : student,
+            "subject" : subject,
+            "date" : date,
+            "score" : score
+        };
+        alert(json.student + " " + json.subject + " " + json.date + " " + json.score);
+       }
+
+        </script>
+    </head>
+
+    <body>
+        <img src="img/bg01.jpg" id="pozadina" style="position:fixed; top:0px; left:0px; z-index:-999; width:100%; overflow-y:hidden; overflow-x:hidden; margin:auto;">
+        <div class="wrapper">
+
+            <div id="meni">
+                <nav id="navigation">
+                    <ul>
+                   <li><a href="index.html">Overview</a></li>
+                    <li><a href="formStudent.html">New Student</a></li>
+                    <li><a href="formSubject.html">New Subject</a></li>
+                    <li><a href="formExam.html">New Exam</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="form">
+                <form id="forma">
+                    <h1>Enter new exam</h1>
+                    <p>Student</p>
+                    <input type="text" id="student" name="student" placeholder="Student">
+                    <p>Subject</p>
+                    <input type="text" id="subject" name="subject" placeholder="Subject">
+                    <p>Date</p>
+                    <input type="text" id="date" name="date" placeholder="DD.MM.YYYY">
+                    <br>
+                    <label>Score <br><br>
+                            <input type="number" maxlength="2" id="score" placeholder="Score" max="10" min="5">
+                    </label>
+                    <br>
+                    <div id="centar">
+                        <input type="button" value="Submit!" class="button" id="submit" onClick="saveExamData()">
+                    </div>
+                </form>
+            </div>
+            <footer>
+               
+            </footer>
+        </div>
+
+
+
+
+    </body>
+
+    </html>

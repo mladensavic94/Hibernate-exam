@@ -14,9 +14,10 @@ public class Main {
 	public static void main(String[] args) {
 		StudentDao s = new StudentDao();
 		Student st = new Student(20130123, "TestName", "TestSurname", "TestBirthplace", Gender.MALE);
-		s.insertNewStudent(st);
+		// s.insertNewStudent(st);
 		//
-		// List<Student> lista = s.listAllStudents(); for (int i = 0; i <
+		// List<Student> lista = s.listAllStudents();
+		// for (int i = 0; i <
 		// lista.size(); i++) { System.out.println(lista.get(i).toString()); ;
 		// }
 		//

@@ -1,0 +1,79 @@
+<DOCTYPE! html>
+    <html>
+
+    <head>
+        <title>New student input</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <script src="jquery/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript">
+        function saveStudentData(){
+            var name = document.getElementById("name").value;
+            var surname = document.getElementById("surname").value;
+            var index = document.getElementById("index").value;
+            var birthplace = document.getElementById("birthplace").value;
+            var gender;
+            if(document.getElementById("maleGender").checked) gender = "Male";
+            else gender = "Female";
+            var json = {
+                "name": name,
+                "surname": surname,
+                "index": index,
+                "birthplace": birthplace,
+                "gender": gender
+            };
+            
+
+        }
+        </script>
+    </head>
+
+    <body>
+        <img src="img/bg01.jpg" id="pozadina" style="position:fixed; top:0px; left:0px; z-index:-999; width:100%; overflow-y:hidden; overflow-x:hidden; margin:auto;">
+        <div class="wrapper">
+
+            <div id="meni">
+                <nav id="navigation">
+                    <ul>
+                     <li><a href="index.html">Overview</a></li>
+                    <li><a href="formStudent.html">New Student</a></li>
+                    <li><a href="formSubject.html">New Subject</a></li>
+                    <li><a href="formExam.html">New Exam</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="form">
+                <form id="forma">
+                     <h1>Enter new student</h1>
+                    <p>Name</p>
+                    <input type="text" id="name" name="name" placeholder="Name">
+                    <p>Surname</p>
+                    <input type="text" id="surname" name="surname" placeholder="Surname">
+                    <p>Index</p>
+                    <input type="text" id="index" name="index" placeholder="YYYYXXXX">
+                    <p>Birthplace</p>
+                    <input type="text" id="birthplace" name="birthplace" placeholder="City">
+                    <br>
+                    <p>Gender</p>
+                    <input type="radio" value="male" name="sex" checked id="maleGender">Male
+                    <input type="radio" value="female" name="sex" id="femaleGender">Female
+                    <br>
+                    <div id="centar">
+                        <input type="button" value="Submit!" class="button" id="submit" onClick="saveStudentData()">
+                    </div>
+                </form>
+               
+            </div>
+            <footer>
+                
+            </footer>
+        </div>
+
+
+
+
+    </body>
+
+    </html>

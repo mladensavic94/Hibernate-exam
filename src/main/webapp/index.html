@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Home page</title>
+    <script src="jquery/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+    function showData(){
+        var box =  document.getElementById("combo");
+        var selectedText = box.options[box.selectedIndex].text;
+        
+        if(selectedText == "Student"){
+        document.getElementById("studentTable").style.display="table";
+        document.getElementById("subjectTable").style.display="none";
+        document.getElementById("examTable").style.display="none";
+        }
+        else if(selectedText == "Subject"){
+        document.getElementById("studentTable").style.display="none";
+        document.getElementById("subjectTable").style.display="table";
+        document.getElementById("examTable").style.display="none";
+        }
+        else{
+        document.getElementById("studentTable").style.display="none";
+        document.getElementById("subjectTable").style.display="none";
+        document.getElementById("examTable").style.display="table";
+        }
+    }
+    </script>
+     <script type="text/javascript">
+                var jsonArrayStudent = [{"name": "TestStudent",
+                "surname": "TestStudent",
+                "index": "TestStudent",
+                "birthplace": "TestStudent",
+                "gender": "TestStudent"},
+                {"name": "TestStudent2",
+                "surname": "TestStudent2",
+                "index": "TestStudent2",
+                "birthplace": "TestStudent2",
+                "gender": "TestStudent2"}];
+            var jsonArraySubject = [{"name" : "TestSubject","leadProff": "TestSubject", "year": "123"},{"name" : "TestSubject2","leadProff": "TestSubject2", "year": "123"}];
+            var jsonArrayExam = [{"student":"TestExam", "subject":"TestExam","date":"TestExam","score":"TestExam"},{"student":"TestExam2", "subject":"TestExam2","date":"TestExam2","score":"TestExam2"}];
+    </script>
+</head>
+
+<body>
+    <img src="img/bg01.jpg" id="pozadina" style="position:fixed; top:0px; left:0px; z-index:-999; width:100%; overflow-y:hidden; overflow-x:hidden; margin:auto;">
+
+    <div class="wrapper">
+
+
+        <div id="meni">
+            <nav id="navigation">
+                <ul>
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="formStudent.html">New Student</a></li>
+                    <li><a href="formSubject.html">New Subject</a></li>
+                    <li><a href="formExam.html">New Exam</a></li>
+                
+                </ul>
+               
+            </nav>
+
+        </div>
+
+        <div id="body">
+            <select id="combo" style="width:200px">
+                <option value="student">Student</option>
+                <option value="subject">Subject</option>
+                <option value="exam">Exam</option>
+                
+            </select> 
+            <input type="submit" value="Show!" class="button" id="submit" onClick="showData()">
+            <br><br>
+            <table id="studentTable" style="display:table">
+                <th>Index</th><th>Name</th><th>Surname</th><th>Birthplace</th><th>Gender</th>
+                <script type="text/javascript">
+                for(var i = 0; i < jsonArrayStudent.length;i++){
+                    document.write("<tr>");
+                        document.write("<td>" + jsonArrayStudent[i].name + "</td>" + "<td>" + jsonArrayStudent[i].surname + "</td>" + "<td>" + jsonArrayStudent[i].index + "</td>" + "<td>" + jsonArrayStudent[i].birthplace + "</td>" + "<td>" + jsonArrayStudent[i].gender + "</td>");
+                    document.write("<tr>");
+                }
+                </script>
+               
+            </table>
+            <table id="subjectTable" style="display:none">
+                <th>Name</th><th>Lead proffesor</th><th>Year of enrolment</th>
+                <script type="text/javascript">
+                for(var i = 0; i < jsonArraySubject.length;i++){
+                    document.write("<tr>");
+                        document.write("<td>" + jsonArraySubject[i].name + "</td>" + "<td>" + jsonArraySubject[i].leadProff + "</td>" + "<td>" + jsonArraySubject[i].year + "</td>");
+                    document.write("<tr>");
+                }
+                </script>
+            </table>
+            <table id="examTable" style="display:none">
+                <th>Student</th><th>Subject</th><th>Date</th><th>Score</th>
+                 <script type="text/javascript">
+                for(var i = 0; i < jsonArrayExam.length;i++){
+                    document.write("<tr>");
+                        document.write("<td>" + jsonArrayExam[i].student + "</td>" + "<td>" + jsonArrayExam[i].subject + "</td>" + "<td>" + jsonArrayExam[i].date + "</td>" + "<td>" + jsonArrayExam[i].score + "</td>");
+                    document.write("<tr>");
+                }
+                </script>
+            </table>
+            
+        </div>
+
+        <footer>
+            
+        </footer>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

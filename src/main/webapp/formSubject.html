@@ -1,0 +1,66 @@
+<DOCTYPE! html>
+    <html>
+
+    <head>
+        <title>New subject input</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="jquery/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript">
+        function saveSubjectData(){
+            var name = document.getElementById("name").value;
+            var leadProff = document.getElementById("leadproff").value;
+            var year = document.getElementById("year").value;
+
+            var json = {
+                "name" : name,
+                "leadProff" : leadProff,
+                "year" : year
+
+            };
+            alert(json.name + " " + json.leadProff + " " + json.year);
+
+        }
+        </script>
+    </head>
+
+    <body>
+        <img src="img/bg01.jpg" id="pozadina" style="position:fixed; top:0px; left:0px; z-index:-999; width:100%; overflow-y:hidden; overflow-x:hidden; margin:auto;">
+        <div class="wrapper">
+
+            <div id="meni">
+                <nav id="navigation">
+                    <ul>
+                  <li><a href="index.html">Overview</a></li>
+                    <li><a href="formStudent.html">New Student</a></li>
+                    <li><a href="formSubject.html">New Subject</a></li>
+                    <li><a href="formExam.html">New Exam</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="form" >
+                <form id="forma" >
+                    <h1>Enter new subject</h1>
+                    <p>Name</p>
+                    <input type="text" id="name" name="name" placeholder="Name">
+                    <p>Lead proffesor</p>
+                    <input type="text" id="leadproff" name="leadproff" placeholder="Proffesor`s name">
+                    <p>Year of enrolment</p>
+                    <input type="text" id="year" name="year" placeholder="YYYY">
+                    <div id="centar">
+                        <input type="button" value="Submit!" class="button" id="submit" onClick="saveSubjectData()">
+                     </div>
+                </form>
+                
+            </div>
+            <footer>
+               
+            </footer>
+        </div>
+
+
+
+
+    </body>
+
+    </html>

@@ -10,24 +10,18 @@ import rs.ac.bg.fon.ai.persistance.HibernateUtil;
 
 public class StudentDao {
 
-	@SuppressWarnings("unchecked")
 	public void insertNewStudent(Student student) {
 
-		List<Student> result = listAllStudents();
+		Student fromDB = findbyIndex(student.getIndex());
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
-		boolean exist = false;
-		for (int i = 0; i < result.size(); i++) {
-			if (result.get(i).getIndex() == student.getIndex()) {
-				System.out.println("Student with index: " + student.getIndex() + "already exists");
-				exist = true;
-			}
 
-		}
-		if (!exist) {
+		if (fromDB == null) {
 			session.save(student);
 			session.getTransaction().commit();
 			System.out.println("New student added");
+		} else {
+			System.out.println("Student already exists");
 		}
 
 		HibernateUtil.getInstance().closeFactory();
@@ -56,4 +50,5 @@ public class StudentDao {
 		return s;
 
 	}
+
 }
