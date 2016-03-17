@@ -17,6 +17,5 @@ public class StudentRestService {
 	public String getAllStudentsJson() {
 		StudentDao studentDao = new StudentDao();
 		return StudentJsonConverter.serializeStudentArray(studentDao.listAllStudents()).toString();
-
 	}
 }

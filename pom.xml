@@ -1,12 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>mladen</groupId>
+	<groupId>rs.ac.bg.fon.ai</groupId>
 	<artifactId>Exam</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Exam Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<jetty.version>9.3.7.v20160115</jetty.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -27,6 +30,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
@@ -44,11 +48,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.6.2</version>
 		</dependency>
-
-
-
 	</dependencies>
-
 
 	<build>
 		<finalName>Exam</finalName>
@@ -57,7 +57,15 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.0.5.v20130815</version>
+				<version>${jetty.version}</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8080</port>
+							<maxIdleTime>3600000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

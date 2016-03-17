@@ -31,8 +31,8 @@ public class HibernateConfig {
 		p.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		p.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
 		p.put("hibernate.connection.url", "jdbc:mysql://localhost/examrecord");
-		p.put("hibernate.connection.user", "admin");
-		p.put("hibernate.connection.password", "admin");
+		p.put("hibernate.connection.user", "examrecord");
+		p.put("hibernate.connection.password", "examrecord");
 		p.put("hibernate.hbm2ddl.auto", "update");
 		return p;
 
