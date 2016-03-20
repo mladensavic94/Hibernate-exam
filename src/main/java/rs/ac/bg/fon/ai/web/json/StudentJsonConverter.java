@@ -23,4 +23,9 @@ public class StudentJsonConverter {
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(student);
 	}
+
+	public static Student deserializeStudent(String studentJson) {
+
+		return new Gson().fromJson(studentJson, Student.class);
+	}
 }

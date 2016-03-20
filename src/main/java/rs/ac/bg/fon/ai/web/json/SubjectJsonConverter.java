@@ -23,4 +23,8 @@ public class SubjectJsonConverter {
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(subject);
 	}
+
+	public static Subject deserializeSubject(String subjectJson) {
+		return new Gson().fromJson(subjectJson, Subject.class);
+	}
 }

@@ -23,4 +23,9 @@ public class ExamJsonConverter {
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(exam);
 	}
+
+	public static Exam deserializeExam(String examJson) {
+
+		return new Gson().fromJson(examJson, Exam.class);
+	}
 }

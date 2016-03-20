@@ -9,20 +9,13 @@
         <!-- bootstrap 3.0.2 -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
-        <link href="css/ionicons.css" rel="stylesheet" type="text/css" />
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- google font -->
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <!-- Theme style -->
         <link href="css/style.css" rel="stylesheet" type="text/css" />
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-
-        <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Director App -->
-        <script src="js/Director/app.js" type="text/javascript"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,29 +23,7 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-         <script>
-            var jsonArrayExam = "";
-                                    var jqxhr = $.getJSON("http://localhost:8080/rest/exams", function(data){
-                                        
-                                    jsonArrayExam = data;
-                                    var table = document.getElementById("table");
-                                     for(var i = 0; i < jsonArrayExam.length;i++){
-                                        var row = table.insertRow(i+1);
-                                        var cellStudentName = row.insertCell(0);
-                                        var cellSubjectName = row.insertCell(1);
-                                        var cellDate = row.insertCell(2);
-                                        var cellScore = row.insertCell(3);
-                                        
-                                        
-                                        cellStudentName.innerHTML = jsonArrayExam[i].student.name;
-                                        cellSubjectName.innerHTML = jsonArrayExam[i].subject.name;
-                                        cellDate.innerHTML = jsonArrayExam[i].date;
-                                        cellScore.innerHTML = jsonArrayExam[i].score;
-                                        
-                                        
-                                         }
-                                    });
-    </script>
+ 
     </head>
     <body class="skin-black">
         <!-- header logo: style can be found in header.less -->
@@ -142,25 +113,36 @@
                         <div class="col-xs-12">
                             <div class="panel">
                                 <header class="panel-heading">
-                                   Exam table
+                                   RestApi methods
 
                                 </header>
-                                <!-- <div class="box-header"> -->
-                                    <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
-
-                                <!-- </div> -->
+                            
                                 <div class="panel-body table-responsive">
-                                    <div class="box-tools m-b-15">
-                                        <div class="input-group">
-                                            <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <table class="table table-hover" id="table">
-                                       <th>Student</th><th>Subject</th><th>Date</th><th>Score</th>
-                                    </table>
+                                        <br>
+                                        <h4>GET Students</h4>
+                                        <p>Calling GET method on given <a href="localhost:8080/rest/students">link</a> represents data on all students from database</p>
+                                        <img src="img/students.png">
+                                </div>
+                                 <div class="panel-body table-responsive">
+                                        <br>
+                                        <h4>GET Subjects</h4>
+                                       <p>Calling GET method on given <a href="localhost:8080/rest/subjects">link</a> represents data on all subjects from database</p>
+                                        <img src="img/subjects.png">
+                                </div>
+                                 <div class="panel-body table-responsive">
+                                        <br>
+                                        <h4>GET Exams</h4>
+                                        <p>Calling GET method on given <a href="localhost:8080/rest/exams">link</a> represents data on all exams from database</p>
+                                        <img src="img/exams.png">
+                                </div>
+                                 <div class="panel-body table-responsive">
+                                        <br>
+                                        <h4>GET Passed Exams</h4>
+                                        <p>Calling GET method on given <a href="localhost:8080/rest/exams/passed">link</a> represents data on all passed exams from database</p>
+                                        <img src="img/examspassed.png">
+                                </div>
+
+                                    
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                         </div>
@@ -173,6 +155,13 @@
         </div><!-- ./wrapper -->
 
 
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
 
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Director App -->
+        <script src="js/Director/app.js" type="text/javascript"></script>
     </body>
 </html>

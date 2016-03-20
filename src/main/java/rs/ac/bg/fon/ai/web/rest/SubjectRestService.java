@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import rs.ac.bg.fon.ai.dao.SubjectDao;
 import rs.ac.bg.fon.ai.domain.Subject;
@@ -21,7 +20,7 @@ import rs.ac.bg.fon.ai.web.json.SubjectJsonConverter;
 public class SubjectRestService {
 
 	private SubjectDao subjectDao;
-	
+
 	public SubjectRestService() {
 		subjectDao = new SubjectDao();
 	}
@@ -34,12 +33,13 @@ public class SubjectRestService {
 
 		return new Gson().toJson(subjects);
 	}
-	
+
 	@POST
-	@Consumes (MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertNewSubject(String subjectJson) {
-		System.out.println(subjectJson);
-		
+		Subject subject = SubjectJsonConverter.deserializeSubject(subjectJson);
+		subjectDao.insertNewSubject(subject);
+
 		return Response.ok().build();
 	}
 }
