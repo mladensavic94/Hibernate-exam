@@ -51,4 +51,15 @@ public class StudentDao {
 
 	}
 
+	public Student findByName(String name) {
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		session.beginTransaction();
+		String sql = "FROM Student WHERE name= :nameParam";
+		Query q = session.createQuery(sql);
+		q.setString("nameParam", name);
+		Student s = (Student) q.uniqueResult();
+		HibernateUtil.getInstance().closeFactory();
+		return s;
+	}
+
 }

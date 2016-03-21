@@ -13,7 +13,11 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 
 import rs.ac.bg.fon.ai.dao.ExamDao;
+import rs.ac.bg.fon.ai.dao.StudentDao;
+import rs.ac.bg.fon.ai.dao.SubjectDao;
 import rs.ac.bg.fon.ai.domain.Exam;
+import rs.ac.bg.fon.ai.domain.Student;
+import rs.ac.bg.fon.ai.domain.Subject;
 import rs.ac.bg.fon.ai.web.json.ExamJsonConverter;
 
 @Path("/exams")
@@ -45,7 +49,15 @@ public class ExamRestService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertNewExam(String examJson) {
+
 		Exam exam = ExamJsonConverter.deserializeExam(examJson);
+
+		SubjectDao subjectDao = new SubjectDao();
+		StudentDao studentDao = new StudentDao();
+		Student student = studentDao.findByName(exam.getStudent().getName());
+		Subject subject = subjectDao.getSubjectByName(exam.getSubject().getName());
+		exam.setStudent(student);
+		exam.setSubject(subject);
 		examDao.insertNewExam(exam);
 		return Response.ok().build();
 	}

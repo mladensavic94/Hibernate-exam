@@ -16,6 +16,13 @@
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <!-- Theme style -->
         <link href="css/style.css" rel="stylesheet" type="text/css" />
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Director App -->
+        <script src="js/Director/app.js" type="text/javascript"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,13 +39,15 @@
             var birthplace = document.getElementById("birthplace").value;
             var gender=document.getElementById("gender").value;
             var json = {
+                "index": index,
                 "name": name,
                 "surname": surname,
-                "index": index,
-                "birthplace": birthplace,
+                "birthPlace": birthplace,
                 "gender": gender
             };
-            var d = JSON.stringify(json);
+
+             var d = JSON.stringify(json);
+            
             $.ajax({
             type : 'POST',
             contentType : 'application/json',
@@ -148,7 +157,7 @@
                                  Form for entering new student
                               </header>
                               <div class="panel-body">
-                                  <form class="form-horizontal tasi-form" method="get">
+                                  <form class="form-horizontal tasi-form">
                                       <div class="form-group">
                                           <label class="col-sm-2 col-sm-2 control-label">Index</label>
                                           <div class="col-sm-10">
@@ -179,7 +188,7 @@
                                               <input class="form-control" type="text" id="gender">
                                           </div>
                                           <br>
-                                          <button type="submit" class="btn btn-danger" style="margin-left:45%; margin-top:20px; width:300px" onClick="getData()">Submit</button>
+                                          <button type="button" class="btn btn-danger" style="margin-left:45%; margin-top:20px; width:300px" onClick="getData()">Submit</button>
                                   </form>
                               </div>
                             </section>
@@ -191,12 +200,6 @@
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-
-        <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Director App -->
-        <script src="js/Director/app.js" type="text/javascript"></script>
+       
     </body>
 </html>

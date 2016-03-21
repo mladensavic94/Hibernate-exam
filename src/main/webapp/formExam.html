@@ -16,6 +16,13 @@
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <!-- Theme style -->
         <link href="css/style.css" rel="stylesheet" type="text/css" />
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Director App -->
+        <script src="js/Director/app.js" type="text/javascript"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,15 +32,15 @@
         <![endif]-->
          <script type="text/javascript">
                function getData(){
-                var student = document.getElementsById("student").value;
-                var subject = document.getElementsById("subject").value;
-                var date = document.getElementsById("date").value;
-                var score = document.getElementsById("score").value;
+                var student = document.getElementById("student").value;
+                var subject = document.getElementById("subject").value;
+                var date = document.getElementById("date").value;
+                var score = document.getElementById("score").value;
                 var json = {
-                  "student":student,
-                  "subject":subject,
-                  "date":date,
-                  "score":score
+                  "student": { "name": student},
+                  "subject": {"name" : subject},
+                  "date": date,
+                  "score": score
 
                 };
                 var d = JSON.stringify(json);
@@ -53,10 +60,10 @@
             }
 
           });
-                document.getElementsById("student").value = "";
-                document.getElementsById("subject").value = "";
-                document.getElementsById("date").value = "";
-                document.getElementsById("score").value = "";
+                document.getElementById("student").value = "";
+                document.getElementById("subject").value = "";
+                document.getElementById("date").value = "";
+                document.getElementById("score").value = "";
                }
     </script>
     </head>
@@ -145,7 +152,7 @@
                                  Form for entering new exam
                               </header>
                               <div class="panel-body">
-                                  <form class="form-horizontal tasi-form" method="get">
+                                  <form class="form-horizontal tasi-form">
                                       
                                     
                                       <div class="form-group">
@@ -173,7 +180,7 @@
                                           </div>
                                       </div>
                                           <br>
-                                          <button type="submit" class="btn btn-danger" style="margin-left:45%; margin-top:20px; width:300px" onClick="getData()">Submit</button>
+                                          <button type="button" class="btn btn-danger" style="margin-left:45%; margin-top:20px; width:300px" onClick="getData()">Submit</button>
                                   </form>
                               </div>
                             </section>
@@ -182,15 +189,5 @@
                 </div>
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
-
-
-        <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-
-        <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Director App -->
-        <script src="js/Director/app.js" type="text/javascript"></script>
     </body>
 </html>
