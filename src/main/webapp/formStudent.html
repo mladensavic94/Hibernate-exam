@@ -38,6 +38,28 @@
                 "birthplace": birthplace,
                 "gender": gender
             };
+            var d = JSON.stringify(json);
+            $.ajax({
+            type : 'POST',
+            contentType : 'application/json',
+            url : 'http://localhost:8080/rest/students',
+            dataType : 'json',
+            data : d,
+            succes : function(data, textStatus, jqXHR){
+              alert(textStatus);
+           
+
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+              alert(errorThrown);
+            }
+
+          });
+            document.getElementById("name").value = "";
+            document.getElementById("surname").value = "";
+            document.getElementById("index").value = "";
+            document.getElementById("birthplace").value = "";
+            document.getElementById("gender").value = "";
         }
     </script>
     </head>

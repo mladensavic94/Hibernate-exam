@@ -40,14 +40,29 @@
                 "leadProffesor": lead,
                 "year": year
             };
-            alert(json.name);
+            
             var d = JSON.stringify(json);
-            alert(d);
-          var jqxhr = $.post("http://localhost:8080/rest/subjects", {
-                "name": name,
-                "leadProffesor": lead,
-                "year": year
-            }, function(data){ alert("done!")});
+           
+        
+            $.ajax({
+            type : 'POST',
+            contentType : 'application/json',
+            url : 'http://localhost:8080/rest/subjects',
+            dataType : 'json',
+            data : d,
+            succes : function(data, textStatus, jqXHR){
+              alert(textStatus);
+           
+
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+              alert(errorThrown);
+            }
+          });
+            document.getElementById("name").value = "";
+            document.getElementById("leadProff").value = "";
+            document.getElementById("year").value = "";
+          
 
         }
     </script>
@@ -160,7 +175,7 @@
                                       </div>
                                       
                                           <br>
-                                          <button type="submit" class="btn btn-danger" style="margin-left:45%; margin-top:20px; width:300px" onClick="getData()">Submit</button>
+                                          <button type="button" class="btn btn-danger" style="margin-left:45%; margin-top:20px; width:300px" onClick="getData()">Submit</button>
                                   </form>
                               </div>
                             </section>

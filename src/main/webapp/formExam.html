@@ -36,6 +36,27 @@
                   "score":score
 
                 };
+                var d = JSON.stringify(json);
+                $.ajax({
+            type : 'POST',
+            contentType : 'application/json',
+            url : 'http://localhost:8080/rest/exams',
+            dataType : 'json',
+            data : d,
+            succes : function(data, textStatus, jqXHR){
+              alert(textStatus);
+           
+
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+              alert(errorThrown);
+            }
+
+          });
+                document.getElementsById("student").value = "";
+                document.getElementsById("subject").value = "";
+                document.getElementsById("date").value = "";
+                document.getElementsById("score").value = "";
                }
     </script>
     </head>
