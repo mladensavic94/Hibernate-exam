@@ -2,6 +2,7 @@ package rs.ac.bg.fon.ai.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -9,19 +10,20 @@ import rs.ac.bg.fon.ai.domain.Student;
 import rs.ac.bg.fon.ai.persistance.HibernateUtil;
 
 public class StudentDao {
+	public static Logger log = Logger.getLogger(StudentDao.class);
 
 	public void insertNewStudent(Student student) {
 
-		Student fromDB = findbyIndex(student.getIndex());
+		Long count = countByName(student.getName());
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		if (fromDB == null) {
+		if (count == 0) {
 			session.save(student);
 			session.getTransaction().commit();
-			System.out.println("New student added");
+			log.info("New student added");
 		} else {
-			System.out.println("Student already exists");
+			log.info("Student already exists");
 		}
 
 		HibernateUtil.getInstance().closeFactory();
@@ -34,7 +36,7 @@ public class StudentDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 		List<Student> result = session.createQuery("FROM Student").list();
-
+		log.info("All students listed!");
 		HibernateUtil.getInstance().closeFactory();
 		return result;
 	}
@@ -52,6 +54,7 @@ public class StudentDao {
 	}
 
 	public Student findByName(String name) {
+		log.trace("Opening connection");
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 		String sql = "FROM Student WHERE name= :nameParam";
@@ -59,7 +62,33 @@ public class StudentDao {
 		q.setString("nameParam", name);
 		Student s = (Student) q.uniqueResult();
 		HibernateUtil.getInstance().closeFactory();
+		log.trace("Closing connection");
 		return s;
+	}
+
+	public List<Student> listStudentsByName(String name) {
+		log.trace("Opening connection");
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		session.beginTransaction();
+		String sql = "FROM Student WHERE name= :nameParam";
+		Query q = session.createQuery(sql);
+		q.setString("nameParam", name);
+		@SuppressWarnings("unchecked")
+		List<Student> list = q.list();
+		HibernateUtil.getInstance().closeFactory();
+		log.trace("Closing connection");
+		return list;
+	}
+
+	public Long countByName(String name) {
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		session.beginTransaction();
+		String sql = "SELECT count(s.name)FROM Student s WHERE name= :nameParam";
+		Query q = session.createQuery(sql);
+		q.setString("nameParam", name);
+		Long l = (Long) q.uniqueResult();
+		HibernateUtil.getInstance().closeFactory();
+		return l;
 	}
 
 }

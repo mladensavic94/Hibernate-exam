@@ -2,6 +2,7 @@ package rs.ac.bg.fon.ai.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -9,29 +10,20 @@ import rs.ac.bg.fon.ai.domain.Subject;
 import rs.ac.bg.fon.ai.persistance.HibernateUtil;
 
 public class SubjectDao {
+	public static Logger log = Logger.getLogger(SubjectDao.class);
 
-	@SuppressWarnings("unchecked")
 	public void insertNewSubject(Subject subject) {
-		List<Subject> list = getAllSubjects();
-		boolean exist = false;
-		for (Subject sub : list) {
-			if (sub.getName().equals(subject.getName())) {
-				exist = true;
-				System.out.println("Subject with that name already exist");
-				break;
-			}
+		Long count = countByName(subject.getName());
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		session.beginTransaction();
+		if (count == 0) {
 
-		}
-		if (!exist) {
-
-			Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
-			session.beginTransaction();
 			session.persist(subject);
-			System.out.println("Subject: " + subject.getName() + " added to database");
 			session.getTransaction().commit();
 			HibernateUtil.getInstance().closeFactory();
-
-		}
+			log.info("Subject added to db");
+		} else
+			log.info("Subject already exists");
 
 	}
 
@@ -53,6 +45,27 @@ public class SubjectDao {
 		q.setString("nameSubject", name);
 		Subject sub = (Subject) q.uniqueResult();
 		return sub;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Subject> listSubjectsByName(String name) {
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		String hql = "FROM Subject WHERE name= :nameSubject";
+		Query q = session.createQuery(hql);
+		q.setString("nameSubject", name);
+		List<Subject> list = q.list();
+		return list;
+	}
+
+	public Long countByName(String name) {
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		session.beginTransaction();
+		String sql = "SELECT count(s.name)FROM Subject s WHERE name= :nameParam";
+		Query q = session.createQuery(sql);
+		q.setString("nameParam", name);
+		Long l = (Long) q.uniqueResult();
+		HibernateUtil.getInstance().closeFactory();
+		return l;
 	}
 
 }

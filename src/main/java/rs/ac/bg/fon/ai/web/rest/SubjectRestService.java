@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -30,6 +31,15 @@ public class SubjectRestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getAllSubjectsJson() {
 		List<Subject> subjects = subjectDao.getAllSubjects();
+
+		return new Gson().toJson(subjects);
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{name}")
+	public String getSubjectsByNameJson(@PathParam("name") String name) {
+		List<Subject> subjects = subjectDao.listSubjectsByName(name);
 
 		return new Gson().toJson(subjects);
 	}
