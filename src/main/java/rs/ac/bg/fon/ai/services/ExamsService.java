@@ -5,27 +5,27 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import rs.ac.bg.fon.ai.domain.Student;
+import rs.ac.bg.fon.ai.domain.Exam;
 import rs.ac.bg.fon.ai.persistance.HibernateUtil;
 
-public class StudentsService {
-	public static Logger log = Logger.getLogger(StudentsService.class);
+public class ExamsService {
+
+	public static Logger log = Logger.getLogger(ExamsService.class);
 
 	@SuppressWarnings("unchecked")
-	public List<Student> listAllStudents(String query, String order, int limit, int page) {
+	public List<Exam> getAllExams(String query, String order, int limit, int page) {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
-		String sql = "FROM Student s " + "WHERE name LIKE CONCAT(:query, '%') " + "ORDER BY s.index " + order;
+		String sql = "FROM Exam e " + "WHERE date LIKE CONCAT(:query, '%') " + "ORDER BY e.id " + order;
 
-		List<Student> result = session.createQuery(sql)
+		List<Exam> result = session.createQuery(sql)
 				.setString("query", query)
 				.setFirstResult((page - 1) * limit)
 				.setMaxResults(limit).list();
 		
 
-		log.info("All students listed!");
+		log.info("All exams listed!");
 		HibernateUtil.getInstance().closeFactory();
 		return result;
 	}
-
 }

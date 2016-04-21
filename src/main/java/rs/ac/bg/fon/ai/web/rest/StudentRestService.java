@@ -28,6 +28,7 @@ public class StudentRestService {
 
 	public StudentRestService() {
 		studentDao = new StudentDao();
+		studentServices = new StudentsService();
 	}
 
 	@GET
